@@ -4,6 +4,8 @@
       {{ value }}
     </pre>
 
+    <div class="bg-default square-11 my-4 rounded-full" />
+
     <WInput
       v-model="value"
       title="Input"

@@ -53,6 +53,12 @@ export function extensionBuilder({manifestPath}: {
 
       content.version = packageJson.version
 
+      if (viteConfig.mode === 'development') {
+        content.content_security_policy = {
+          extension_pages: 'script-src \'self\' http://localhost:3221; object-src \'self\';',
+        }
+      }
+
       const outputPath = resolve(viteConfig.build.outDir, 'manifest.json')
 
       await writeFile(

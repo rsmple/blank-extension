@@ -4,10 +4,11 @@
   "type": "module",
   "scripts": {
     "build:extension": "vite build --config vite.config.extension.ts --mode production",
-    "build:popup": "vite build --config vite.config.popup.ts",
+    "build:popup": "vite build --config vite.config.popup.ts --mode production",
     "build": "npm run build:extension && npm run build:popup",
     "dev:extension": "vite build --config vite.config.extension.ts --mode development",
-    "dev": "vite --config vite.config.popup.ts",
+    "dev:popup": "vite --config vite.config.popup.ts --mode development",
+    "dev": "npm run dev:extension && npm run dev:popup",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

@@ -5,7 +5,7 @@ import tailwindBase from 'eco-vue-js/tailwind-base'
 export default {
   mode: 'jit',
   content: [
-    './entry/popup/**/*',
+    './src/entry/popup/**/*{vue,ts}',
     ...tailwindBase.content,
   ],
   presets: [
