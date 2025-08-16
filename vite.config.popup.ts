@@ -7,9 +7,14 @@ import {defineConfig} from 'vite'
 import {resolve} from 'path'
 import {fileURLToPath} from 'url'
 
-export default defineConfig({
+import {popupBuilder} from './build/vite-plugin-popup-builder'
+
+export default defineConfig(({mode}) => ({
   root: resolve(__dirname, 'src/entry/popup'),
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    popupBuilder(),
+  ],
   css: {
     postcss: {
       plugins: [postcssImport(), tailwindcss({config: './tailwind/tailwind.config.ts'}), autoprefixer()],
@@ -44,4 +49,7 @@ export default defineConfig({
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
     },
   },
-})
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(mode),
+  },
+}))

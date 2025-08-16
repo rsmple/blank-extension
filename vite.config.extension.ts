@@ -7,11 +7,7 @@ import {extensionBuilder} from './build/vite-plugin-extension-builder'
 
 export default defineConfig(({mode}) => ({
   plugins: [
-    extensionBuilder({
-      manifestPath: './src/entry/extension/manifest.ts',
-      popupPath: './src/entry/popup/popup.html',
-      outDir: 'dist',
-    }),
+    extensionBuilder({manifestPath: './src/entry/extension/manifest.ts'}),
   ],
   build: {
     outDir: 'dist',
