@@ -4,13 +4,14 @@ import tailwindcss from 'tailwindcss'
 import {CSSOptions, defineConfig} from 'vite'
 
 import {resolve} from 'path'
+import {fileURLToPath} from 'url'
 
 import {extensionBuilder} from './build/vite-plugin-extension-builder'
 
 export default defineConfig({
   plugins: [
     extensionBuilder({
-      manifestPath: './src/manifest.ts',
+      manifestPath: './src/entry/extension/manifest.ts',
       publicDir: 'public',
       outDir: 'dist',
     }),
@@ -29,13 +30,18 @@ export default defineConfig({
     emptyOutDir: false,
     rollupOptions: {
       input: {
-        popup: resolve(__dirname, 'popup.html'),
-        content: resolve(__dirname, 'src/content.ts'),
+        popup: resolve(__dirname, 'src/entry/popup/popup.html'),
+        content: resolve(__dirname, 'src/entry/content/content.ts'),
       },
       output: {
         entryFileNames: '[name].js',
         assetFileNames: '[name][extname]',
       },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })

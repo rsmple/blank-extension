@@ -1,20 +1,24 @@
 /* eslint-disable no-console */
-import {Plugin, build} from 'vite'
+import {Plugin, ResolvedConfig, build} from 'vite'
 
 import {mkdir, readFile, readdir, rm, writeFile} from 'fs/promises'
 import {join, resolve} from 'path'
 
 import packageJson from '../package.json' with { type: 'json' }
 
-export function extensionBuilder(options: {
+export function extensionBuilder({manifestPath, publicDir, outDir}: {
   manifestPath: string
   publicDir: string
   outDir: string
 }): Plugin {
-  const {manifestPath, publicDir, outDir} = options
+  let viteConfig: ResolvedConfig
 
   return {
     name: 'vite-plugin-extension-builder',
+  
+    configResolved(resolvedConfig) {
+      viteConfig = resolvedConfig
+    },
 
     async buildStart() {
       await rm(outDir, {recursive: true, force: true})
@@ -30,6 +34,7 @@ export function extensionBuilder(options: {
           emptyOutDir: true,
           write: false,
         },
+        resolve: viteConfig.resolve,
       })
 
       const compiledCode = Array.isArray(result)
