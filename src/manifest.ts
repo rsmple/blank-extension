@@ -11,13 +11,12 @@ const manifest: chrome.runtime.ManifestV3 = {
   },
   content_scripts: [
     {
-      matches: ['https://**/*'],
+      matches: ['<all_urls>'],
       js: ['content.js'],
-      css: ['content.css'],
     },
   ],
   permissions: ['storage'],
-  host_permissions: ['https://**/*'],
+  host_permissions: ['<all_urls>'],
   icons: {
     128: 'logo128.png',
   },
