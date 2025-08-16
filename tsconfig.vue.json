@@ -1,0 +1,34 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "src/models/**/*.d.ts",
+    "src/models/**/*.ts",
+    "src/types/**/*.d.ts",
+    "src/types/**/*.ts",
+
+    "src/entry/popup/env.d.ts",
+    "src/entry/popup/**/*.d.ts",
+    "src/entry/popup/**/*.ts",
+    "src/entry/popup/**/*.vue"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "baseUrl": ".",
+    "preserveSymlinks": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@popup/*": [
+        "./src/entry/popup/*"
+      ]
+    },
+    "types": ["chrome"],
+    "lib": ["dom", "esnext"],
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

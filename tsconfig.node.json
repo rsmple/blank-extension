@@ -7,7 +7,7 @@
     "nightwatch.conf.*",
     "playwright.config.*",
     "build/**/*",
-    "tailwind.config.*"
+    "tailwind/**/*"
   ],
   "compilerOptions": {
     "composite": true,

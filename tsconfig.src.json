@@ -1,8 +1,15 @@
 {
   "include": [
     "env.d.ts",
-    "src/**/*.d.ts",
-    "src/**/*.ts"
+    "src/models/**/*.d.ts",
+    "src/models/**/*.ts",
+    "src/types/**/*.d.ts",
+    "src/types/**/*.ts",
+
+    "src/entry/extension/**/*.d.ts",
+    "src/entry/extension/**/*.ts",
+    "src/entry/content/**/*.d.ts",
+    "src/entry/content/**/*.ts"
   ],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {

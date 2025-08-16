@@ -35,6 +35,7 @@ export function extensionBuilder({manifestPath, publicDir, outDir}: {
           write: false,
         },
         resolve: viteConfig.resolve,
+        define: viteConfig.define,
       })
 
       const compiledCode = Array.isArray(result)

@@ -1,14 +1,11 @@
-import autoprefixer from 'autoprefixer'
-import postcssImport from 'postcss-import'
-import tailwindcss from 'tailwindcss'
-import {CSSOptions, defineConfig} from 'vite'
+import {defineConfig} from 'vite'
 
 import {resolve} from 'path'
 import {fileURLToPath} from 'url'
 
 import {extensionBuilder} from './build/vite-plugin-extension-builder'
 
-export default defineConfig({
+export default defineConfig(({mode}) => ({
   plugins: [
     extensionBuilder({
       manifestPath: './src/entry/extension/manifest.ts',
@@ -16,21 +13,11 @@ export default defineConfig({
       outDir: 'dist',
     }),
   ],
-  css: {
-    postcss: {
-      plugins: [
-        postcssImport(),
-        tailwindcss({config: './tailwind.config.ts'}),
-        autoprefixer(),
-      ] as CSSOptions['postcss'] extends {plugins: infer P} ? P : never,
-    },
-  },
   build: {
     outDir: 'dist',
     emptyOutDir: false,
     rollupOptions: {
       input: {
-        popup: resolve(__dirname, 'src/entry/popup/popup.html'),
         content: resolve(__dirname, 'src/entry/content/content.ts'),
       },
       output: {
@@ -44,4 +31,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-})
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(mode),
+  },
+}))

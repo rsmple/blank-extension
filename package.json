@@ -3,7 +3,12 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "build:extension": "vite build --config vite.config.extension.ts --mode production",
+    "build:popup": "vite build --config vite.config.popup.ts",
+    "build": "npm run build:extension && npm run build:popup",
+    "dev:extension": "vite build --config vite.config.extension.ts --mode development",
+    "dev": "vite --config vite.config.popup.ts",
+
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
