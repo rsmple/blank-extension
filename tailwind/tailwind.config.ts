@@ -17,6 +17,7 @@ export default {
         'default-dark': '#22262E',
         primary: '#6892FD',
         'primary-dark': '#6892FD',
+        'primary-darkest': '#0E1016',
       },
     },
   },

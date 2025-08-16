@@ -1,5 +1,5 @@
 export type UserScript = {
-  id: string
+  id: number
   name: string
   is_enabled: boolean
   script: string
