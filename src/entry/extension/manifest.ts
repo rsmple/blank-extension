@@ -7,7 +7,7 @@ const manifest: chrome.runtime.ManifestV3 = {
   name: EXTENSION_NAME,
   version: pkg.version,
   action: {
-    default_popup: 'popup/popup.html',
+    default_popup: 'popup.html',
   },
   content_scripts: [
     {

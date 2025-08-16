@@ -19,7 +19,14 @@ export default defineConfig({
     outDir: resolve(__dirname, 'dist/popup'),
     emptyOutDir: true,
     rollupOptions: {
-      input: resolve(__dirname, 'src/entry/popup/popup.html'),
+      input: resolve(__dirname, 'src/entry/popup/popup.ts'),
+      output: {
+        entryFileNames: '[name].js',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.names.includes('popup.css')) return 'popup.css'
+          return '[name][extname]'
+        },
+      },
     },
   },
   resolve: {
