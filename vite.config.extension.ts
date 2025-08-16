@@ -9,7 +9,7 @@ export default defineConfig(({mode}) => ({
   plugins: [
     extensionBuilder({
       manifestPath: './src/entry/extension/manifest.ts',
-      publicDir: 'public',
+      popupPath: './src/entry/popup/popup.html',
       outDir: 'dist',
     }),
   ],
@@ -18,7 +18,7 @@ export default defineConfig(({mode}) => ({
     emptyOutDir: false,
     rollupOptions: {
       input: {
-        popup: resolve(__dirname, 'popup.html'),
+        main: resolve(__dirname, 'src/entry/extension/main.ts'),
         content: resolve(__dirname, 'src/entry/content/content.ts'),
       },
       output: {

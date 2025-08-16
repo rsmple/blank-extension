@@ -1,14 +1,39 @@
 /* eslint-disable no-console */
 import {Plugin, ResolvedConfig, build} from 'vite'
 
-import {mkdir, readFile, readdir, rm, writeFile} from 'fs/promises'
-import {join, resolve} from 'path'
+import {mkdir, readFile, rm, writeFile} from 'fs/promises'
+import {resolve} from 'path'
 
 import packageJson from '../package.json' with { type: 'json' }
 
-export function extensionBuilder({manifestPath, publicDir, outDir}: {
+type TagData = {tag: string, attrs: Record<string, string | true>, injectTo: 'head' | 'body'}
+
+const noCloseTagList = ['link']
+
+const appendTag = (content: string, data: TagData): string => {
+  let index: number = -1
+
+  if (data.injectTo === 'body') {
+    index = content.indexOf('</body>')
+  }
+
+  if (data.injectTo === 'head') {
+    index = content.indexOf('</head>')
+  }
+
+  if (index === -1) {
+    console.error(`HTML: "${ data.tag }" tag is not found`)
+    return content
+  }
+
+  return content.substring(0, index) +
+    `\n  <${ data.tag } ${ Object.keys(data.attrs).map(key => data.attrs[key] === true ? key : `${ key }="${ data.attrs[key] }"`).join(' ') }>${ noCloseTagList.includes(data.tag) ? '' : `</${ data.tag }>` }\n` +
+    content.substring(index)
+}
+
+export function extensionBuilder({manifestPath, popupPath, outDir}: {
   manifestPath: string
-  publicDir: string
+  popupPath: string
   outDir: string
 }): Plugin {
   let viteConfig: ResolvedConfig
@@ -67,29 +92,25 @@ export function extensionBuilder({manifestPath, publicDir, outDir}: {
     },
 
     async closeBundle() {
-      const walk = async (dir: string, relBase = '') => {
-        const entries = await readdir(dir, {withFileTypes: true})
+      const content = await readFile(popupPath, 'utf-8')
 
-        for (const entry of entries) {
-          const fullPath = join(dir, entry.name)
-          const relPath = join(relBase, entry.name)
-          const outPath = join(outDir, relPath)
+      const tags: TagData[] = viteConfig.mode === 'development' ? [
+        {tag: 'script', attrs: {type: 'module', src: '/@vite/client'}, injectTo: 'head'},
+        {tag: 'script', attrs: {type: 'module', src: 'http://localhost:3221/main.ts'}, injectTo: 'body'},
+      ] : [
+        {tag: 'script', attrs: {type: 'module', crossorigin: true, src: 'popup/popup.js'}, injectTo: 'head'},
+        {tag: 'link', attrs: {rel: 'stylesheet', crossorigin: true, href: 'popup/popup.css'}, injectTo: 'head'},
+      ]
 
-          if (entry.isDirectory()) {
-            await mkdir(outPath, {recursive: true})
-            await walk(fullPath, relPath)
-          } else {
-            const data = await readFile(fullPath)
-            await writeFile(outPath, data)
-          }
-        }
-      }
+      const outputPath = resolve(outDir, 'popup.html')
 
-      try {
-        await walk(publicDir)
-      } catch (e) {
-        console.warn(`[extensionBuilder] Skipped static asset copy: ${ e instanceof Object && 'message' in e ? e.message : e }`)
-      }
+      await writeFile(
+        outputPath,
+        tags.reduce((result, tag) => appendTag(result, tag), content),
+        'utf-8',
+      )
+
+      console.log(`✓ popup.html for ${ viteConfig.mode } mode generated at: ${ outputPath }`)
     },
   }
 }
