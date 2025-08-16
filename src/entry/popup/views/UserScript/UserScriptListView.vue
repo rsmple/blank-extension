@@ -16,7 +16,7 @@
 
         <div class="col-span-full grid grid-cols-subgrid">
           <UserScriptItem
-            v-for="item in list"
+            v-for="item in queryUserScriptList.data.value"
             :key="item.id"
             :item="item"
             class="border-t border-solid border-gray-200 dark:border-gray-700"
@@ -28,18 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import type {UserScript} from '@/models/UserScript'
-
 import UserScriptItem from './components/UserScriptItem.vue'
 
-const list: UserScript[] = Array(15).fill(null).map((_, index) => ({
-  id: index + 1,
-  name: `Script ${ index + 1 }`,
-  is_enabled: true,
-  script: '',
-  draft: '',
-  url_pattern: `https://some-site.empty/page-${ index + 1 }/index.php`,
-  created_at: new Date(),
-  updated_at: new Date(),
-}))
+import {useQueryUserScriptList} from '../../api/queries/UserScript'
+
+const queryUserScriptList = useQueryUserScriptList()
 </script>

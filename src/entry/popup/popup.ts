@@ -1,5 +1,6 @@
 import './assets/styles/popup.css'
 
+import {VueQueryPlugin} from '@tanstack/vue-query'
 import {createApp} from 'vue'
 
 import App from './App.vue'
@@ -11,5 +12,6 @@ appendDarkMode()
 const app = createApp(App)
 
 app.use(router)
+app.use(VueQueryPlugin)
 
 app.mount('#appPopup')
