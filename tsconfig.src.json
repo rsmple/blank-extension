@@ -1,10 +1,9 @@
 {
   "include": [
     "env.d.ts",
-    "src/models/**/*.d.ts",
-    "src/models/**/*.ts",
-    "src/types/**/*.d.ts",
-    "src/types/**/*.ts",
+    "src/models/**/*",
+    "src/storage/**/*",
+    "src/types/**/*",
 
     "src/entry/extension/**/*",
     "src/entry/content/**/*"

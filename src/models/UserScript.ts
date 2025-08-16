@@ -5,6 +5,6 @@ export type UserScript = {
   script: string
   draft: string
   url_pattern: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
