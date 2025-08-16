@@ -2,10 +2,12 @@ import {type RouteRecordRaw, createRouter, createWebHashHistory} from 'vue-route
 
 import {RouteName} from '../utils/RouteName'
 
+const ROUTE_STORAGE_KEY = 'popup_current_route'
+
 const routes = [
   {
     path: '/',
-    redirect: {name: RouteName.USER_SCRIPT_LIST},
+    redirect: (await chrome.storage.local.get(ROUTE_STORAGE_KEY))?.[ROUTE_STORAGE_KEY] ?? {name: RouteName.USER_SCRIPT_LIST},
     children: [
       {
         path: 'user-script',
@@ -34,6 +36,10 @@ const router = createRouter({
     return {top: 0}
   },
   routes,
+})
+
+router.afterEach((to) => {
+  chrome.storage.local.set({[ROUTE_STORAGE_KEY]: {name: to.name, params: to.params, query: to.query}})
 })
 
 export default router
