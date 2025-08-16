@@ -8,7 +8,7 @@ export default [
 
   {
     name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/node_modules/**', '**/extension/**'],
+    ignores: ['**/dist/**', '**/node_modules/**'],
   },
 
   ...plugin.configs.recommended(),

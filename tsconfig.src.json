@@ -7,7 +7,7 @@
     "src/types/**/*.ts",
 
     "src/entry/extension/**/*",
-    "src/entry/content/**/*",
+    "src/entry/content/**/*"
   ],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
