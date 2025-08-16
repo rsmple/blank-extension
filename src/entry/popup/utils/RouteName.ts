@@ -1,0 +1,4 @@
+export enum RouteName {
+  USER_SCRIPT_LIST = 'USER_SCRIPT_LIST',
+  USER_SCRIPT = 'USER_SCRIPT',
+}

@@ -7,10 +7,7 @@
     "src/types/**/*.d.ts",
     "src/types/**/*.ts",
 
-    "src/entry/popup/env.d.ts",
-    "src/entry/popup/**/*.d.ts",
-    "src/entry/popup/**/*.ts",
-    "src/entry/popup/**/*.vue"
+    "src/entry/popup/**/*",
   ],
   "compilerOptions": {
     "composite": true,

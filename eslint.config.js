@@ -11,16 +11,12 @@ export default [
     ignores: ['**/dist/**', '**/node_modules/**'],
   },
 
-  ...plugin.configs.recommended(),
-
-  {
-    settings: {
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: './tsconfig.src.json',
-        },
-      },
-    },
-  },
+  ...plugin.configs.recommended({
+    tsConfig: [
+      './tsconfig.json',
+      './tsconfig.node.json',
+      './tsconfig.src.json',
+      './tsconfig.vue.json',
+    ],
+  }),
 ]
