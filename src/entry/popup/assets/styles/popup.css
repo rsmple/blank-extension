@@ -4,6 +4,31 @@
 
 @layer base {
   html {
-    @apply bg-[#162B60]
+    width: 30rem;
+    height: 30rem;
+    @apply bg-default text-black-default
+  }
+
+  html.dark {
+    @apply bg-default-dark text-default
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    forced-color-adjust: exact;
+
+    -webkit-tap-highlight-color: transparent;
+
+    --inner-margin: 1rem;
+
+    @apply
+      w-checkbox-size-3
+      w-modal-wrapper-p-[--inner-margin]
+      w-input-h-7 w-input-rounded-md w-input-gap-0.5
+      w-list-header-h-9 w-list-header-rounded-xl w-list-padding-3
+      w-button-h-7 w-button-rounded-lg
+      w-modal-confirm-w-[32rem]
+      text-sm
   }
 }

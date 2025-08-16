@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="-p--inner-margin">
     <pre>
       {{ value }}
     </pre>
 
-    <div class="bg-default square-11 my-4 rounded-full" />
+    <div class="bg-primary square-11 my-4 rounded-full" />
 
     <WInput
       v-model="value"

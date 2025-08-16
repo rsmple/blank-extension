@@ -11,4 +11,13 @@ export default {
   presets: [
     tailwindBase,
   ],
+  theme: {
+    extend: {
+      colors: {
+        'default-dark': '#22262E',
+        primary: '#6892FD',
+        'primary-dark': '#6892FD',
+      },
+    },
+  },
 } satisfies Config
