@@ -21,11 +21,11 @@
     </div>
 
     <div>
-      {{ dateFormat(item.updated_at) }}
+      {{ dateFormat(new Date(item.updated_at)) }}
     </div>
 
     <div>
-      {{ dateFormat(item.created_at) }}
+      {{ dateFormat(new Date(item.created_at)) }}
     </div>
   </RouterLink>
 </template>

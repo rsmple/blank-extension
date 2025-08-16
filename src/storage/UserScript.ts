@@ -4,21 +4,21 @@ const USER_SCRIPTS_KEY = 'user_scripts'
 const NEXT_ID_KEY = 'user_scripts_next_id'
 
 export const userScriptStorage = {
-  async getAll(): Promise<UserScript[]> {
-    return (await chrome.storage.local.get(USER_SCRIPTS_KEY))[USER_SCRIPTS_KEY] || []
+  async getAll(): Promise<RequestResponse<UserScript[]>> {
+    return {data: (await chrome.storage.local.get(USER_SCRIPTS_KEY))[USER_SCRIPTS_KEY] || []} as RequestResponse<UserScript[]>
   },
 
-  async getById(id: number): Promise<UserScript> {
-    const scripts = await this.getAll()
+  async getById(id: number): Promise<RequestResponse<UserScript>> {
+    const scripts = (await this.getAll()).data
     const value = scripts.find(script => script.id === id)
 
     if (!value) throw new Error(`UserScript with id ${ id } not found`)
 
-    return value
+    return {data: value} as RequestResponse<UserScript>
   },
 
-  async create(payload: Partial<UserScript>): Promise<UserScript> {
-    const scripts = await this.getAll()
+  async create(payload: Partial<UserScript>): Promise<RequestResponse<UserScript>> {
+    const scripts = (await this.getAll()).data
     const nextIdResult = await chrome.storage.local.get(NEXT_ID_KEY)
     const nextId = nextIdResult[NEXT_ID_KEY] || 1
 
@@ -41,11 +41,11 @@ export const userScriptStorage = {
       [NEXT_ID_KEY]: nextId + 1,
     })
 
-    return newScript
+    return {data: newScript} as RequestResponse<UserScript>
   },
 
-  async update(id: number, payload: Partial<Omit<UserScript, 'id' | 'created_at'>>): Promise<UserScript> {
-    const scripts = await this.getAll()
+  async update(id: number, payload: Partial<UserScript>): Promise<RequestResponse<UserScript>> {
+    const scripts = (await this.getAll()).data
     const index = scripts.findIndex(script => script.id === id)
 
     if (index === -1) throw new Error(`UserScript with id ${ id } not found`)
@@ -57,11 +57,11 @@ export const userScriptStorage = {
     }
 
     await chrome.storage.local.set({[USER_SCRIPTS_KEY]: scripts})
-    return scripts[index]
+    return {data: scripts[index]} as RequestResponse<UserScript>
   },
 
   async delete(id: number): Promise<void> {
-    const scripts = await this.getAll()
+    const scripts = (await this.getAll()).data
     const index = scripts.findIndex(script => script.id === id)
 
     if (index === -1) throw new Error(`UserScript with id ${ id } not found`)

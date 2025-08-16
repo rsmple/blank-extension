@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "5.83.1",
-    "eco-vue-js": "0.10.68",
+    "eco-vue-js": "0.10.93",
     "vue": "3.5.16",
     "vue-router": "4.5.1"
   },

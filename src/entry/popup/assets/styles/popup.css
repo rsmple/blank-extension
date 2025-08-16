@@ -21,6 +21,7 @@
     -webkit-tap-highlight-color: transparent;
 
     --inner-margin: 1rem;
+    --inner-width: 100vw;
 
     @apply
       w-checkbox-size-3
