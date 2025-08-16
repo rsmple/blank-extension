@@ -42,7 +42,7 @@ export const popupBuilder = (): Plugin => {
       
       const tags: TagData[] = viteConfig.mode === 'development' ? [
         {tag: 'script', attrs: {type: 'module', src: '/@vite/client'}, injectTo: 'head'},
-        {tag: 'script', attrs: {type: 'module', src: `http://localhost:${ viteConfig.server.port }/main.ts`}, injectTo: 'body'},
+        {tag: 'script', attrs: {type: 'module', src: `http://localhost:${ viteConfig.server.port }/popup.ts`}, injectTo: 'body'},
       ] : [
         {tag: 'script', attrs: {type: 'module', crossorigin: true, src: 'popup/popup.js'}, injectTo: 'head'},
         {tag: 'link', attrs: {rel: 'stylesheet', crossorigin: true, href: 'popup/popup.css'}, injectTo: 'head'},
