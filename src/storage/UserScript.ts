@@ -17,12 +17,17 @@ export const userScriptStorage = {
     return value
   },
 
-  async create(payload: UserScript): Promise<UserScript> {
+  async create(payload: Partial<UserScript>): Promise<UserScript> {
     const scripts = await this.getAll()
     const nextIdResult = await chrome.storage.local.get(NEXT_ID_KEY)
     const nextId = nextIdResult[NEXT_ID_KEY] || 1
 
     const newScript: UserScript = {
+      name: '',
+      is_enabled: true,
+      script: '',
+      draft: '',
+      url_pattern: '',
       ...payload,
       id: nextId,
       created_at: new Date().toISOString(),

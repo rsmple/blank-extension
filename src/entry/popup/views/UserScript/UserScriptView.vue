@@ -8,8 +8,8 @@
 
     <div>
       <UserScriptItem
-        v-if="queryUserScriptList.data.value"
-        :item="queryUserScriptList.data.value"
+        v-if="queryUserScript.data.value"
+        :item="queryUserScript.data.value"
       />
     </div>
   </div>
@@ -31,5 +31,5 @@ const route = useRoute()
 
 const id = computed(() => parseId(route.params.userScriptId))
 
-const queryUserScriptList = useQueryUserScript(id)
+const queryUserScript = useQueryUserScript(id)
 </script>
