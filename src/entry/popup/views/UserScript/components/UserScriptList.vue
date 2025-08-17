@@ -28,7 +28,6 @@
       ['created_at', 'created_at'],
     ]"
     :card-to="item => ({name: RouteName.USER_SCRIPT, params: {userScriptId: item.id}})"
-    has-action
     class="w-list-card-w-[18rem] sm:card:w-list-rounded-xl sm:card:w-list-gap-4"
     card-class="sm:card:shadow sm:card:border border-gray-100 dark:border-gray-800 card:-p--inner-margin list:h-12 card:gap-2"
     card-wrapper-class="card:self-start"

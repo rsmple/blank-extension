@@ -9,16 +9,10 @@
           class="truncate"
           :class="{
             'group-hover:underline': !card,
+            'text-description': !item.is_enabled,
           }"
         >
           {{ item.name || 'Untitled Script' }}
-        </div>
-
-        <div
-          v-if="!item.is_enabled"
-          class="text-default sm-not:text-xs rounded-xl bg-gray-200 px-2 text-sm font-semibold dark:bg-gray-700"
-        >
-          disabled
         </div>
       </div>
     </template>

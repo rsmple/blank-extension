@@ -1,42 +1,69 @@
 <template>
   <WListCardField :skeleton="skeleton">
-    <template #inner>
-      <div class="flex items-center">
-        <div
-          class="mr-2 size-2 rounded-full"
-          :class="{
-            'bg-green-500': item.is_enabled,
-            'bg-gray-400': !item.is_enabled,
-          }"
-        />
-        <span class="text-default sm-not:text-xs">
-          {{ item.is_enabled ? 'Enabled' : 'Disabled' }}
-        </span>
-      </div>
-    </template>
+    <WToggle
+      :model-value="item.is_enabled ?? false"
+      :disabled="skeleton"
+      :readonly="readonly"
+      :title="card
+        ? item.is_enabled
+          ? 'Enabled'
+          : 'Disabled'
+        : undefined
+      "
+      right-label
+      no-margin
+      class="grid py-2"
+      @update:model-value="toggle"
+    />
   </WListCardField>
 </template>
 
 <script lang="ts" setup>
 import type {UserScript} from '@/models/UserScript'
 
+import {computed, ref} from 'vue'
+
 import type {FieldProps, ListField} from 'eco-vue-js/dist/components/List/types'
+import {handleApiError} from 'eco-vue-js/dist/utils/api'
 
 import WListCardField from 'eco-vue-js/dist/components/List/WListCardField.vue'
+import WToggle from 'eco-vue-js/dist/components/Toggle/WToggle.vue'
 
-defineProps<FieldProps<UserScript>>()
+import {useApiUserScript} from '@/entry/popup/views/UserScript/api/ApiUserScript'
 
-defineEmits<{
+const props = defineProps<FieldProps<UserScript>>()
+
+const emit = defineEmits<{
   (e: 'update:item', value: UserScript): void
   (e: 'delete:item'): void
 }>()
+
+const apiUserScript = useApiUserScript(computed(() => props.item.id))
+
+const loading = ref(false)
+
+const toggle = (is_enabled: boolean) => {
+  if (loading.value) return
+
+  loading.value = true
+
+  apiUserScript.update({is_enabled})
+    .then(response => {
+      emit('update:item', response.data)
+    })
+    .catch(error => handleApiError(error, undefined, 'is_enabled'))
+    .finally(() => {
+      loading.value = false
+    })
+}
 </script>
 
 <script lang="ts">
 export const meta = {
   label: 'is_enabled',
-  cssClass: 'basis-24',
+  cssClass: 'basis-20',
   title: 'Enabled',
   allowResize: false,
+  sticky: true,
 } as const satisfies ListField<UserScript>
 </script>

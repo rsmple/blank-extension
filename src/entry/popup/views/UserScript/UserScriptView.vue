@@ -1,64 +1,66 @@
 <template>
-  <div class="-p--inner-margin">
-    Item {{ $route.params.userScriptId }}
+  <div class="pb-16">
+    <WButton
+      :to="{name: RouteName.USER_SCRIPT_LIST}"
+      :semantic-type="SemanticType.SECONDARY"
+      class="w-button-rounded-2xl w-max"
+    >
+      <IconArrowRight class="rotate-180" /> Back
+    </WButton>
 
-    <RouterLink :to="{name: RouteName.USER_SCRIPT_LIST}">
-      Back
-    </RouterLink>
+    <div class="pb-10" />
 
-    <div>
-      <WFormAsyncInput
-        title="Name"
-        field="name"
-        :use-query-fn="useQueryUserScript"
-        :query-params="id"
-        :api-method="apiUserScript.update"
-      />
+    <WFormAsyncInput
+      title="Name"
+      field="name"
+      :use-query-fn="useQueryUserScript"
+      :query-params="id"
+      :api-method="apiUserScript.update"
+    />
 
-      <WFormAsyncToggle
-        :title="queryUserScript.data.value?.is_enabled ? 'Enabled' : 'Disabled'"
-        right-label
-        small
-        field="is_enabled"
-        :use-query-fn="useQueryUserScript"
-        :query-params="id"
-        :api-method="apiUserScript.update"
-      />
+    <WFormAsyncToggle
+      :title="queryUserScript.data.value?.is_enabled ? 'Enabled' : 'Disabled'"
+      right-label
+      small
+      field="is_enabled"
+      :use-query-fn="useQueryUserScript"
+      :query-params="id"
+      :api-method="apiUserScript.update"
+    />
 
-      <WFormAsyncInput
-        title="URL pattern"
-        field="url_pattern"
-        :use-query-fn="useQueryUserScript"
-        :query-params="id"
-        :api-method="apiUserScript.update"
-      />
+    <WFormAsyncInput
+      title="URL pattern"
+      field="url_pattern"
+      :use-query-fn="useQueryUserScript"
+      :query-params="id"
+      :api-method="apiUserScript.update"
+    />
 
-      <div class="pb-10" />
+    <div class="pb-10" />
 
-      <WFormAsyncInput
-        field="draft"
-        :use-query-fn="useQueryUserScript"
-        :query-params="id"
-        :api-method="apiUserScript.update"
+    <WFormAsyncInput
+      field="draft"
+      :use-query-fn="useQueryUserScript"
+      :query-params="id"
+      :api-method="apiUserScript.update"
 
-        textarea
-      />
+      textarea
+    />
 
-      <div class="pb-10" />
+    <div class="pb-10" />
 
-      <WButton
-        :semantic-type="SemanticType.NEGARIVE"
-        @click="deleteUserScript.deleteItem"
-      >
-        Delete Script
-      </WButton>
-    </div>
+    <WButton
+      :semantic-type="SemanticType.NEGARIVE"
+      @click="deleteUserScript.deleteItem"
+    >
+      Delete Script
+    </WButton>
   </div>
 </template>
 
 <script setup lang="ts">
 import {computed} from 'vue'
-import {RouterLink, useRoute, useRouter} from 'vue-router'
+import {useRoute, useRouter} from 'vue-router'
 
 import {SemanticType} from 'eco-vue-js/dist/utils/SemanticType'
 import {parseId} from 'eco-vue-js/dist/utils/utils'
@@ -66,6 +68,8 @@ import {parseId} from 'eco-vue-js/dist/utils/utils'
 import WButton from 'eco-vue-js/dist/components/Button/WButton.vue'
 import WFormAsyncInput from 'eco-vue-js/dist/components/FormAsync/WFormAsyncInput.vue'
 import WFormAsyncToggle from 'eco-vue-js/dist/components/FormAsync/WFormAsyncToggle.vue'
+
+import IconArrowRight from '@popup/assets/icons/IconArrowRight.svg?component'
 
 import {RouteName} from '@popup/utils/RouteName'
 

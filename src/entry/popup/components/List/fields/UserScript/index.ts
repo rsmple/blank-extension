@@ -9,10 +9,10 @@ import * as FieldUserScriptName from './WFieldUserScriptName.vue'
 import * as FieldUserScriptUrlPattern from './WFieldUserScriptUrlPattern.vue'
 
 export const listFieldsUserScript = [
+  FieldUserScriptIsEnabled,
   FieldUserScriptName,
   FieldUserScriptUrlPattern,
-  FieldUserScriptIsEnabled,
   FieldUserScriptDateCreated,
 ] as const satisfies ListFields<UserScript, QueryParamsBulk>
 
-export const defaultFieldConfigMapUserScript = getDefaultFieldConfigMap(listFieldsUserScript, ['name', 'url_pattern', 'is_enabled', 'created_at'])
+export const defaultFieldConfigMapUserScript = getDefaultFieldConfigMap(listFieldsUserScript, ['is_enabled', 'name', 'url_pattern', 'created_at'])

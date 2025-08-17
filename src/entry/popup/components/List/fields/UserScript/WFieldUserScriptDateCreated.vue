@@ -1,5 +1,8 @@
 <template>
-  <WListCardField :skeleton="skeleton">
+  <WListCardField
+    :skeleton="skeleton"
+    allow-open
+  >
     <template #inner>
       <div class="sm-not:text-xs">
         {{ formatDate(item.created_at) }}

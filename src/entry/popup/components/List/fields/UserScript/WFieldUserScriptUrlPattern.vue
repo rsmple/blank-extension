@@ -1,5 +1,8 @@
 <template>
-  <WListCardField :skeleton="skeleton">
+  <WListCardField
+    :skeleton="skeleton"
+    allow-open
+  >
     <template #inner>
       <div class="text-default sm-not:text-xs truncate">
         {{ item.url_pattern || 'No pattern set' }}
