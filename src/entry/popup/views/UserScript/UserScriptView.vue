@@ -48,7 +48,18 @@
       saved-text="Draft saved"
       textarea
       resize
-    />
+      mono
+      text-transparent
+    >
+      <template #before="{modelValue}">
+        <UserScriptHighlight
+          :model-value="modelValue"
+          class="pointer-events-none absolute cursor-text font-mono"
+        />
+      </template>
+    </WFormAsyncInput>
+
+    <div class="py-4" />
 
     <div class="pb-10" />
 
@@ -78,6 +89,7 @@ import {RouteName} from '@popup/utils/RouteName'
 
 import {useApiUserScript} from './api/ApiUserScript'
 import {useQueryUserScript} from './api/QueryUserScript'
+import UserScriptHighlight from './components/UserScriptHighlight.vue'
 import {useDeleteUserScript} from './use/useDeleteUserScript'
 
 const route = useRoute()
