@@ -4,6 +4,7 @@
       :to="{name: RouteName.USER_SCRIPT_LIST}"
       :semantic-type="SemanticType.SECONDARY"
       class="w-button-rounded-2xl w-max"
+      @click="resetScript"
     >
       <IconArrowRight class="rotate-180" /> Back
     </WButton>
@@ -44,7 +45,9 @@
       :query-params="id"
       :api-method="apiUserScript.update"
 
+      saved-text="Draft saved"
       textarea
+      resize
     />
 
     <div class="pb-10" />
@@ -85,4 +88,12 @@ const id = computed(() => parseId(route.params.userScriptId))
 const apiUserScript = useApiUserScript(id)
 const queryUserScript = useQueryUserScript(id)
 const deleteUserScript = useDeleteUserScript(id, () => router.replace({name: RouteName.USER_SCRIPT_LIST}))
+
+const resetScript = () => {
+  if (!queryUserScript.data.value) return
+
+  if (queryUserScript.data.value.name || queryUserScript.data.value.url_pattern || queryUserScript.data.value.draft || queryUserScript.data.value.script) return
+
+  apiUserScript.delete()
+}
 </script>
