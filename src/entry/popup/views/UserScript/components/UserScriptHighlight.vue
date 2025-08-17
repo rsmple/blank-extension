@@ -18,8 +18,6 @@ const rendered = computed<VNode[]>(() => props.modelValue ? tokenize(props.model
 </script>
 
 <style>
-/* JavaScript Syntax Highlighting - Universal Light/Dark Theme */
-
 /* Keywords: const, let, var, function, if, else, etc. */
 .token.keyword {
   color: #0066cc;
