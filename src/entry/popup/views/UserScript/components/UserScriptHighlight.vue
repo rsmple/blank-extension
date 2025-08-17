@@ -20,152 +20,145 @@ const rendered = computed<VNode[]>(() => props.modelValue ? tokenize(props.model
 <style>
 /* Keywords: const, let, var, function, if, else, etc. */
 .token.keyword {
-  color: #0066cc;
+  color: #cc7832;
   font-weight: 600;
   letter-spacing: -0.03em;
 
-  @apply dark:text-[#5dade2]
+  @apply dark:text-[#cc7832];
 }
 
 /* Built-in objects: console, Object, Array, etc. */
 .token.builtin {
-  color: #e74c3c;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  color: #8888c6;
+  font-weight: normal;
 
-  @apply dark:text-[#f1948a];
+  @apply dark:text-[#8888c6];
 }
 
 /* Class names */
 .token.class-name {
-  color: #8e44ad;
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  color: #a9b7c6;
+  font-weight: normal;
 
-  @apply dark:text-[#bb8fce];
+  @apply dark:text-[#a9b7c6];
 }
 
 /* Function names */
 .token.function {
-  color: #2980b9;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  color: #ffc66d;
+  font-weight: normal;
 
-  @apply dark:text-[#7fb3d3];
+  @apply dark:text-[#ffc66d];
 }
 
 /* Boolean values: true, false */
 .token.boolean {
-  color: #c0392b;
+  color: #cc7832;
   font-weight: 600;
   letter-spacing: -0.03em;
 
-  @apply dark:text-[#ec7063];
+  @apply dark:text-[#cc7832];
 }
 
 /* Numbers */
 .token.number {
-  color: #d68910;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  color: #6897bb;
+  font-weight: normal;
 
-  @apply dark:text-[#f4d03f];
+  @apply dark:text-[#6897bb];
 }
 
 /* Strings */
 .token.string {
-  color: #27ae60;
+  color: #6a8759;
 
-  @apply dark:text-[#82e0aa];
+  @apply dark:text-[#6a8759];
 }
 
 /* Character literals */
 .token.char {
-  color: #27ae60;
+  color: #6a8759;
 
-  @apply dark:text-[#82e0aa];
+  @apply dark:text-[#6a8759];
 }
 
 /* Symbols */
 .token.symbol {
-  color: #8e44ad;
+  color: #a9b7c6;
 
-  @apply dark:text-[#bb8fce];
+  @apply dark:text-[#a9b7c6];
 }
 
 /* Regular expressions */
 .token.regex {
-  color: #e67e22;
-  background: rgba(230, 126, 34, 0.1);
+  color: #287bde;
+  background: rgba(40, 123, 222, 0.1);
   border-radius: 2px;
 
-  @apply dark:text-[#f8c471] dark:bg-[rgba(248,196,113,0.15)];
+  @apply dark:text-[#287bde] dark:bg-[rgba(40,123,222,0.1)];
 }
 
 /* URLs */
 .token.url {
-  color: #3498db;
+  color: #287bde;
   text-decoration: underline;
 
-  @apply dark:text-[#85c1e9];
+  @apply dark:text-[#287bde];
 }
 
 /* Operators: +, -, *, /, =, ==, ===, etc. */
 .token.operator {
-  color: #34495e;
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  color: #a9b7c6;
+  font-weight: normal;
 
-  @apply dark:text-[#d5d8dc];
+  @apply dark:text-[#a9b7c6];
 }
 
 /* Variables */
 .token.variable {
-  color: #2c3e50;
+  color: #a9b7c6;
 
-  @apply dark:text-[#d5dbdb];
+  @apply dark:text-[#a9b7c6];
 }
 
 /* Constants */
 .token.constant {
-  color: #c0392b;
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  color: #9876aa;
+  font-weight: normal;
   text-transform: uppercase;
 
-  @apply dark:text-[#ec7063];
+  @apply dark:text-[#9876aa];
 }
 
 /* Object properties */
 .token.property {
-  color: #8e44ad;
+  color: #9876aa;
 
-  @apply dark:text-[#bb8fce];
+  @apply dark:text-[#a9b7c6];
 }
 
 /* Punctuation: brackets, semicolons, commas */
 .token.punctuation {
-  color: #7f8c8d;
+  color: #a9b7c6;
 
-  @apply dark:text-[#aeb6bf];
+  @apply dark:text-[#a9b7c6];
 }
 
 /* Important declarations */
 .token.important {
-  color: #e74c3c;
-  font-weight: 700;
-  letter-spacing: -0.045em;
+  color: #cc7832;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 
-  @apply dark:text-[#f1948a];
+  @apply dark:text-[#cc7832];
 }
 
 /* Comments */
 .token.comment {
-  color: #95a5a6;
+  color: #808080;
   font-style: italic;
-  opacity: 0.8;
 
-  @apply dark:text-[#85929e];
+  @apply dark:text-[#808080];
 }
 
 .token .token {
