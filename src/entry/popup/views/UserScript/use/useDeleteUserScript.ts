@@ -1,4 +1,4 @@
-import {type MaybeRef} from 'vue'
+import {type MaybeRef, unref} from 'vue'
 
 import {Modal} from 'eco-vue-js/dist/utils/Modal'
 import {Notify} from 'eco-vue-js/dist/utils/Notify'
@@ -15,9 +15,11 @@ export const useDeleteUserScript = (id: MaybeRef<number>, success?: () => void) 
   const deleteItem = () => {
     closeModal?.()
 
+    const idValue = unref(id)
+
     closeModal = Modal.addConfirm({
       title: 'Delete Script',
-      description: `Are you sure you want to delete script ${ id }?`,
+      description: `Are you sure you want to delete script ${ idValue }?`,
       acceptText: 'Delete',
       acceptSemanticType: SemanticType.NEGARIVE,
       onAccept: () => {
@@ -28,7 +30,7 @@ export const useDeleteUserScript = (id: MaybeRef<number>, success?: () => void) 
 
             Notify.success({
               title: 'Deleted',
-              caption: `Deleted script ${ id }`,
+              caption: `Deleted script ${ idValue }`,
             })
           })
           .catch(handleApiError)

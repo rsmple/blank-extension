@@ -35,6 +35,7 @@
     min-height: calc(100% + 1px);
     width: auto;
     overflow: auto;
+    position: relative;
 
     @apply
       w-checkbox-size-3
