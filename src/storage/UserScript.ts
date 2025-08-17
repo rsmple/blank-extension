@@ -1,7 +1,11 @@
 import type {UserScript} from '@/models/UserScript'
 
+import {ApiError} from 'eco-vue-js/dist/utils/api'
+
 const USER_SCRIPTS_KEY = 'user_scripts'
 const NEXT_ID_KEY = 'user_scripts_next_id'
+
+const createApiError = (detail: string) => new ApiError({data: {detail}} as RequestResponse<{detail: string}>)
 
 export const userScriptStorage = {
   async getAll(): Promise<RequestResponse<UserScript[]>> {
@@ -12,7 +16,7 @@ export const userScriptStorage = {
     const scripts = (await this.getAll()).data
     const value = scripts.find(script => script.id === id)
 
-    if (!value) throw new Error(`UserScript with id ${ id } not found`)
+    if (!value) return Promise.reject(createApiError(`UserScript with id ${ id } not found`))
 
     return {data: value} as RequestResponse<UserScript>
   },
@@ -48,7 +52,7 @@ export const userScriptStorage = {
     const scripts = (await this.getAll()).data
     const index = scripts.findIndex(script => script.id === id)
 
-    if (index === -1) throw new Error(`UserScript with id ${ id } not found`)
+    if (index === -1) return Promise.reject(createApiError(`UserScript with id ${ id } not found`))
 
     scripts[index] = {
       ...scripts[index],
@@ -64,7 +68,7 @@ export const userScriptStorage = {
     const scripts = (await this.getAll()).data
     const index = scripts.findIndex(script => script.id === id)
 
-    if (index === -1) throw new Error(`UserScript with id ${ id } not found`)
+    if (index === -1) return Promise.reject(createApiError(`UserScript with id ${ id } not found`))
     
     scripts.splice(index, 1)
 
@@ -73,8 +77,6 @@ export const userScriptStorage = {
 
   async bulkUpdate(queryParams: QueryParamsBulk, payload: Partial<UserScript>): Promise<void> {
     const scripts = (await this.getAll()).data
-
-    if (!queryParams.slice_indexes || !queryParams.id__in || !queryParams.id__not_in) throw new Error('No parametes specified')
 
     for (const item of scripts) {
       if (queryParams.slice_indexes) {
@@ -102,7 +104,7 @@ export const userScriptStorage = {
     } else if (queryParams.id__not_in) {
       scripts = scripts.filter(item => queryParams.id__not_in?.includes(item.id))
     } else {
-      throw new Error('No parametes specified')
+      scripts = []
     }
 
     await chrome.storage.local.set({[USER_SCRIPTS_KEY]: scripts})
