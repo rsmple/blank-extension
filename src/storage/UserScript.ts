@@ -70,4 +70,41 @@ export const userScriptStorage = {
 
     await chrome.storage.local.set({[USER_SCRIPTS_KEY]: scripts})
   },
+
+  async bulkUpdate(queryParams: QueryParamsBulk, payload: Partial<UserScript>): Promise<void> {
+    const scripts = (await this.getAll()).data
+
+    if (!queryParams.slice_indexes || !queryParams.id__in || !queryParams.id__not_in) throw new Error('No parametes specified')
+
+    for (const item of scripts) {
+      if (queryParams.slice_indexes) {
+        const index = scripts.indexOf(item)
+        if (index < queryParams.slice_indexes[0] || index > queryParams.slice_indexes[1]) return
+      } else if (queryParams.id__in) {
+        if (!queryParams.id__in?.includes(item.id)) return
+      } else if (queryParams.id__not_in) {
+        if (queryParams.id__not_in?.includes(item.id)) return
+      }
+
+      Object.assign(item, payload)
+    }
+
+    await chrome.storage.local.set({[USER_SCRIPTS_KEY]: scripts})
+  },
+
+  async bulkDelete(queryParams: QueryParamsBulk): Promise<void> {
+    let scripts = (await this.getAll()).data
+
+    if (queryParams.slice_indexes) {
+      scripts.splice(queryParams.slice_indexes[0], queryParams.slice_indexes[1])
+    } else if (queryParams.id__in) {
+      scripts = scripts.filter(item => !queryParams.id__in?.includes(item.id))
+    } else if (queryParams.id__not_in) {
+      scripts = scripts.filter(item => queryParams.id__not_in?.includes(item.id))
+    } else {
+      throw new Error('No parametes specified')
+    }
+
+    await chrome.storage.local.set({[USER_SCRIPTS_KEY]: scripts})
+  },
 }

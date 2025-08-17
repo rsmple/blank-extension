@@ -2,7 +2,7 @@ import type {UserScript} from '@/models/UserScript'
 
 import {type MaybeRef, computed, unref} from 'vue'
 
-import {useDefaultQuery} from 'eco-vue-js/dist/utils/useDefaultQuery'
+import {useDefaultQuery, wrapUseQueryPaginated} from 'eco-vue-js/dist/utils/useDefaultQuery'
 import {isId} from 'eco-vue-js/dist/utils/utils'
 
 import {userScriptStorage} from '@/storage/UserScript'
@@ -41,3 +41,5 @@ export const useQueryUserScriptList = (options: QueryOptions<UserScript[]> = {})
     ...options,
   })
 }
+
+export const useQueryUserScriptListPaginated = wrapUseQueryPaginated<UserScript, QueryParamsBulk & {page?: number}>(QUERY_USER_SCRIPT, useQueryUserScriptList)

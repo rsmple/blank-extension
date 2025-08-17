@@ -51,10 +51,30 @@ export const useApiUserScript = (id?: MaybeRef<number | undefined>) => {
       })
   }
 
+  const bulkUpdate = (params: QueryParamsBulk, payload: Partial<UserScript>) => {
+    return userScriptStorage.bulkUpdate(params, payload)
+      .then(response => {
+        queryClient.refetchQueries({queryKey: [QUERY_USER_SCRIPT]})
+
+        return response
+      })
+  }
+
+  const bulkDelete = (params: QueryParamsBulk) => {
+    return userScriptStorage.bulkDelete(params)
+      .then(response => {
+        queryClient.refetchQueries({queryKey: [QUERY_USER_SCRIPT]})
+
+        return response
+      })
+  }
+
   return {
     update,
     create,
     createOrUpdate,
     delete: deleteItem,
+    bulkUpdate,
+    bulkDelete,
   }
 }

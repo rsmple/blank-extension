@@ -3,7 +3,7 @@ import plugin from 'eco-vue-js/eslint/plugin'
 export default [
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{ts,js,mts,tsx,vue,json}'],
+    files: ['**/*.{ts,js,mts,tsx,vue,json,svg}'],
   },
 
   {

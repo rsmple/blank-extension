@@ -3,6 +3,7 @@ import autoprefixer from 'autoprefixer'
 import postcssImport from 'postcss-import'
 import tailwindcss from 'tailwindcss'
 import {defineConfig} from 'vite'
+import svgLoader from 'vite-svg-loader'
 
 import {resolve} from 'path'
 import {fileURLToPath} from 'url'
@@ -13,6 +14,7 @@ export default defineConfig(({mode}) => ({
   root: resolve(__dirname, 'src/entry/popup'),
   plugins: [
     vue(),
+    svgLoader({defaultImport: 'component', svgo: false}),
     popupBuilder(),
   ],
   css: {

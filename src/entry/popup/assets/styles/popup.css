@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  body,
+  #popup-app {
+    @apply min-h-full
+  }
+
   html {
-    width: 30rem;
+    width: 40rem;
     height: 30rem;
+    overflow: auto;
     @apply bg-default text-black-default
   }
 
@@ -22,6 +28,13 @@
 
     --inner-margin: 1rem;
     --inner-width: 100vw;
+    --header-height: 3rem;
+    --nav-bar-width: 0px;
+    --actions-bar-width: 0px;
+
+    min-height: calc(100% + 1px);
+    width: auto;
+    overflow: auto;
 
     @apply
       w-checkbox-size-3

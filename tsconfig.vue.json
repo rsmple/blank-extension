@@ -6,7 +6,7 @@
     "src/storage/**/*",
     "src/types/**/*",
 
-    "src/entry/popup/**/*",
+    "src/entry/popup/**/*"
   ],
   "compilerOptions": {
     "composite": true,

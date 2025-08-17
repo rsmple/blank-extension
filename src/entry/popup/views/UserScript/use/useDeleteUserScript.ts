@@ -6,11 +6,9 @@ import {SemanticType} from 'eco-vue-js/dist/utils/SemanticType'
 import {handleApiError} from 'eco-vue-js/dist/utils/api'
 
 import {useApiUserScript} from '../api/ApiUserScript'
-import {useQueryUserScript} from '../api/QueryUserScript'
 
 export const useDeleteUserScript = (id: MaybeRef<number>, success?: () => void) => {
   const apiUserScript = useApiUserScript(id)
-  const queryUserScript = useQueryUserScript(id)
 
   let closeModal: (() => void) | null = null
 
@@ -19,7 +17,7 @@ export const useDeleteUserScript = (id: MaybeRef<number>, success?: () => void) 
 
     closeModal = Modal.addConfirm({
       title: 'Delete Script',
-      description: `Are you sure you want to delete script "${ queryUserScript.data.value?.name ?? '' }"?`,
+      description: `Are you sure you want to delete script ${ id }?`,
       acceptText: 'Delete',
       acceptSemanticType: SemanticType.NEGARIVE,
       onAccept: () => {
@@ -30,7 +28,7 @@ export const useDeleteUserScript = (id: MaybeRef<number>, success?: () => void) 
 
             Notify.success({
               title: 'Deleted',
-              caption: `Deleted script "${ queryUserScript.data.value?.name ?? '' }"`,
+              caption: `Deleted script ${ id }`,
             })
           })
           .catch(handleApiError)
