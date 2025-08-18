@@ -1,11 +1,9 @@
 import type {UserScript} from '@/models/UserScript'
 
-import {ApiError} from 'eco-vue-js/dist/utils/api'
-
 const USER_SCRIPTS_KEY = 'user_scripts'
 const NEXT_ID_KEY = 'user_scripts_next_id'
 
-const createApiError = (detail: string) => new ApiError({data: {detail}} as RequestResponse<{detail: string}>)
+const createApiError = (detail: string) => new Error(detail)
 
 export const userScriptStorage = {
   async getAll(): Promise<RequestResponse<UserScript[]>> {

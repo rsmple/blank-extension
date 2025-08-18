@@ -7,13 +7,16 @@ const manifest: chrome.runtime.ManifestV3 = {
   action: {
     default_popup: 'popup.html',
   },
+  background: {
+    service_worker: 'background.js',
+  },
   content_scripts: [
     {
       matches: ['<all_urls>'],
       js: ['content.js'],
     },
   ],
-  permissions: ['storage'],
+  permissions: ['storage', 'scripting'],
   host_permissions: ['<all_urls>'],
   icons: {
     128: 'logo128.png',

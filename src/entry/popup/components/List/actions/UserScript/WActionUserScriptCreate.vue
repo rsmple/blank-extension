@@ -32,12 +32,14 @@ const loading = ref(false)
 const prepareUrl = (url: string | undefined) => {
   if (!url) return undefined
 
-  url = url.slice(url.indexOf('://') + 3)
+  const index = url.indexOf('://')
+  const prefix = url.substring(index)
+  url = url.slice(index + 3)
   url = url.slice(0, url.indexOf('/'))
 
   if (!url) return undefined
 
-  return `://${ url.replace(/\./g, '\\.') }.*`
+  return `${ prefix }://${ url }/*`
 }
 
 const createItem = async () => {

@@ -17,6 +17,7 @@ export default defineConfig(({mode}) => ({
       input: {
         main: resolve(__dirname, 'src/entry/extension/main.ts'),
         content: resolve(__dirname, 'src/entry/content/content.ts'),
+        background: resolve(__dirname, 'src/entry/background/background.ts'),
       },
       output: {
         entryFileNames: '[name].js',

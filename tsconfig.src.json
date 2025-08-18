@@ -6,7 +6,8 @@
     "src/types/**/*",
 
     "src/entry/extension/**/*",
-    "src/entry/content/**/*"
+    "src/entry/content/**/*",
+    "src/entry/background/**/*"
   ],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {

@@ -30,7 +30,7 @@
     />
 
     <WFormAsyncInput
-      title="URL pattern RegExp"
+      title="URL pattern"
       field="url_pattern"
       :use-query-fn="useQueryUserScript"
       :query-params="id"
