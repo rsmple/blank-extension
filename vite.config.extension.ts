@@ -12,6 +12,7 @@ export default defineConfig(({mode}) => ({
   build: {
     outDir: 'dist',
     emptyOutDir: false,
+    target: ['esnext'],
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'src/entry/extension/main.ts'),

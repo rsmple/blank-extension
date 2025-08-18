@@ -25,6 +25,7 @@ export default defineConfig(({mode}) => ({
   build: {
     outDir: resolve(__dirname, 'dist/popup'),
     emptyOutDir: true,
+    target: ['esnext'],
     rollupOptions: {
       input: resolve(__dirname, 'src/entry/popup/popup.ts'),
       output: {
