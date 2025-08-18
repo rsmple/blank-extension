@@ -29,12 +29,26 @@ const apiUserScript = useApiUserScript()
 
 const loading = ref(false)
 
-const createItem = () => {
+const getUrl = async () => {
+  const [activeTab] = await chrome.tabs.query({active: true, currentWindow: true})
+  let url = activeTab?.url
+
+  if (!url) return undefined
+
+  url = url.slice(url.indexOf('://') + 3)
+  url = url.slice(0, url.indexOf('/'))
+
+  if (!url) return undefined
+
+  return `://${ url.replace(/\./g, '\\.') }.*`
+}
+
+const createItem = async () => {
   if (loading.value) return
 
   loading.value = true
 
-  apiUserScript.create({})
+  apiUserScript.create({url_pattern: await getUrl()})
     .then(response => router.push({name: RouteName.USER_SCRIPT, params: {userScriptId: response.data.id}}))
     .finally(() => {
       loading.value = false

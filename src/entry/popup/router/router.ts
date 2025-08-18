@@ -4,7 +4,7 @@ import {RouteName} from '../utils/RouteName'
 
 const ROUTE_STORAGE_KEY = 'popup_current_route'
 
-const routes = [
+export const routes = [
   {
     path: '/',
     redirect: (await chrome.storage.local.get(ROUTE_STORAGE_KEY))?.[ROUTE_STORAGE_KEY] ?? {name: RouteName.USER_SCRIPT_LIST},

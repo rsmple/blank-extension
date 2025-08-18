@@ -30,16 +30,18 @@
     />
 
     <WFormAsyncInput
-      title="URL pattern"
+      title="URL pattern RegExp"
       field="url_pattern"
       :use-query-fn="useQueryUserScript"
       :query-params="id"
       :api-method="apiUserScript.update"
+      mono
     />
 
     <div class="pb-10" />
 
     <WFormAsyncInput
+      title="Script"
       field="draft"
       :use-query-fn="useQueryUserScript"
       :query-params="id"
