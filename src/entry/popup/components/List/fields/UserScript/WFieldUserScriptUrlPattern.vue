@@ -2,6 +2,7 @@
   <WListCardField
     :skeleton="skeleton"
     allow-open
+    class="list:py-4"
   >
     <template #inner>
       <div class="text-default sm-not:text-xs truncate">

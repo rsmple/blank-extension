@@ -47,5 +47,6 @@
       w-button-h-7 w-button-rounded-lg
       w-modal-confirm-w-[32rem]
       text-sm
+      w-input-bg-primary-darkest
   }
 }

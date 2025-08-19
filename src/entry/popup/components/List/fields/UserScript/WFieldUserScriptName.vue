@@ -2,18 +2,11 @@
   <WListCardField
     :skeleton="skeleton"
     allow-open
+    class="list:py-4"
   >
     <template #inner>
-      <div class="text-accent sm-not:text-xs group grid grid-cols-[1fr,auto] items-baseline justify-between gap-x-3 overflow-clip">
-        <div
-          class="truncate"
-          :class="{
-            'group-hover:underline': !card,
-            'text-description': !item.is_enabled,
-          }"
-        >
-          {{ item.name || 'Untitled Script' }}
-        </div>
+      <div class="text-default sm-not:text-xs truncate">
+        {{ item.name || 'Untitled Script' }}
       </div>
     </template>
   </WListCardField>

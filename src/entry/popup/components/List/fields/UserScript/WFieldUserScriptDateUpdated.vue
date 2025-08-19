@@ -2,7 +2,7 @@
   <WListCardField
     :skeleton="skeleton"
     allow-open
-    class="card:text-xs"
+    class="card:text-xs list:py-4"
   >
     <template #inner>
       <span

@@ -1,15 +1,12 @@
 <template>
   <WListCardField
     :skeleton="skeleton"
-    allow-open
-    class="card:text-xs list:py-4"
+    class="
+      list:py-4 list:my-1 bg-primary-darkest card:p-4 card:overflow-x-auto h-12 min-h-12 resize-y
+      overflow-hidden rounded-lg border border-solid border-gray-200 dark:border-gray-700
+    "
   >
-    <template #inner>
-      <span
-        v-if="card"
-        class="list:hidden text-description"
-      >{{ meta.title }}:</span> {{ formatDate(item.created_at) }}
-    </template>
+    <UserScriptHighlight :model-value="item.script || item.draft" />
   </WListCardField>
 </template>
 
@@ -20,23 +17,21 @@ import type {FieldProps, ListField} from 'eco-vue-js/dist/components/List/types'
 
 import WListCardField from 'eco-vue-js/dist/components/List/WListCardField.vue'
 
+import UserScriptHighlight from '@/entry/popup/views/UserScript/components/UserScriptHighlight.vue'
+
 defineProps<FieldProps<UserScript>>()
 
 defineEmits<{
   (e: 'update:item', value: UserScript): void
   (e: 'delete:item'): void
 }>()
-
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString()
-}
 </script>
 
 <script lang="ts">
 export const meta = {
-  label: 'created_at',
-  cssClass: 'basis-32',
-  title: 'Created',
-  allowResize: false,
+  label: 'script',
+  cssClass: 'basis-[20rem]',
+  title: 'Script',
+  allowResize: true,
 } as const satisfies ListField<UserScript>
 </script>

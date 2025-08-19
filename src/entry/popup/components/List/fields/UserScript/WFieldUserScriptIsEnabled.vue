@@ -1,5 +1,5 @@
 <template>
-  <WListCardField :skeleton="skeleton">
+  <WListCardField>
     <WToggle
       :model-value="item.is_enabled ?? false"
       :disabled="skeleton"
@@ -13,7 +13,7 @@
       right-label
       no-margin
       small
-      class="grid py-2"
+      class="[&>*]:sm-not:py-2 h-full [&>*]:grid [&>*]:h-full [&>*]:items-start [&>*]:py-3.5"
       @update:model-value="toggle"
     />
   </WListCardField>

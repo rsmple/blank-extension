@@ -27,10 +27,12 @@
       ['url_pattern', 'url_pattern'],
       ['updated_at', 'updated_at'],
       ['created_at', 'created_at'],
+      ['script', 'script'],
     ]"
+    align-top
     :card-to="item => ({name: RouteName.USER_SCRIPT, params: {userScriptId: item.id}})"
-    class="w-list-card-w-[18rem] sm:card:w-list-rounded-xl sm:card:w-list-gap-4"
-    card-class="sm:card:shadow sm:card:border border-gray-100 dark:border-gray-800 card:-p--inner-margin list:h-12 card:gap-2"
+    class="w-list-card-w-[18rem] sm:card:w-list-rounded-xl"
+    card-class="sm:card:shadow sm:card:border border-gray-100 dark:border-gray-800 card:-p--inner-margin card:gap-2"
     card-wrapper-class="card:self-start"
   />
 </template>
