@@ -2,11 +2,18 @@
   <WListCardField
     :skeleton="skeleton"
     allow-open
-    class="list:py-4"
+    class="list:py-4 sm-not:text-xs"
   >
     <template #inner>
-      <div class="text-default sm-not:text-xs truncate">
-        {{ item.name || 'Untitled Script' }}
+      <template v-if="item.name">
+        {{ item.name }}
+      </template>
+
+      <div
+        v-else
+        class="text-description"
+      >
+        Untitled Script
       </div>
     </template>
   </WListCardField>

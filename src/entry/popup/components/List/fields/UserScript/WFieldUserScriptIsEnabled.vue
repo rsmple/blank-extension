@@ -13,7 +13,7 @@
       right-label
       no-margin
       small
-      class="[&>*]:sm-not:py-2 h-full [&>*]:grid [&>*]:h-full [&>*]:items-start [&>*]:py-3.5"
+      class="[&>*]:sm-not:py-2 list:[&>*]:py-3.5 list:[&>*]:items-start h-full [&>*]:grid [&>*]:h-full"
       @update:model-value="toggle"
     />
   </WListCardField>

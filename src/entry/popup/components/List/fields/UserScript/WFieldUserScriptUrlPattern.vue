@@ -5,8 +5,15 @@
     class="list:py-4"
   >
     <template #inner>
-      <div class="text-default sm-not:text-xs truncate">
-        {{ item.url_pattern || 'No pattern set' }}
+      <template v-if="item.url_pattern">
+        {{ item.url_pattern }}
+      </template>
+
+      <div
+        v-else
+        class="text-description"
+      >
+        No pattern set
       </div>
     </template>
   </WListCardField>
