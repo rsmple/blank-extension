@@ -6,7 +6,7 @@
       overflow-hidden rounded-lg border-solid border-gray-200 dark:border-gray-700
     "
     :class="{
-      'bg-primary-darkest card:p-4 h-12 min-h-12 resize-y border': isSet,
+      'dark:bg-primary-darkest card:p-4 bg-primary-light h-12 min-h-12 resize-y border': isSet,
     }"
   >
     <template v-if="isSet">
