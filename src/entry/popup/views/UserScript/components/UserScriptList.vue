@@ -25,6 +25,7 @@
       ['name', 'area_select'],
       ['is_enabled', 'area_more'],
       ['url_pattern', 'url_pattern'],
+      ['updated_at', 'updated_at'],
       ['created_at', 'created_at'],
     ]"
     :card-to="item => ({name: RouteName.USER_SCRIPT, params: {userScriptId: item.id}})"

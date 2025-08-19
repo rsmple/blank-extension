@@ -8,7 +8,7 @@
       <span
         v-if="card"
         class="list:hidden text-description"
-      >{{ meta.title }}:</span> {{ formatDate(item.created_at) }}
+      >{{ meta.title }}:</span> {{ formatDate(item.updated_at) }}
     </template>
   </WListCardField>
 </template>
@@ -34,9 +34,9 @@ const formatDate = (dateString: string) => {
 
 <script lang="ts">
 export const meta = {
-  label: 'created_at',
+  label: 'updated_at',
   cssClass: 'basis-32',
-  title: 'Created',
+  title: 'Updated',
   allowResize: false,
 } as const satisfies ListField<UserScript>
 </script>

@@ -12,6 +12,7 @@
       "
       right-label
       no-margin
+      small
       class="grid py-2"
       @update:model-value="toggle"
     />
