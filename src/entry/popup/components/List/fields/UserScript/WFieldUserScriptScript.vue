@@ -3,10 +3,10 @@
     :skeleton="skeleton"
     class="
       list:py-3 list:my-1 card:overflow-x-auto relative
-      overflow-hidden rounded-lg border-solid border-gray-200 dark:border-gray-700
+      overflow-hidden border-solid border-gray-200 dark:border-gray-700
     "
     :class="{
-      'dark:bg-primary-darkest card:p-4 bg-primary-light h-12 min-h-12 resize-y border': isSet,
+      'dark:bg-primary-darkest list:rounded-lg card:rounded-b-xl card:p-4 bg-primary-light list:border card:-mx-4 card:-mb-4 h-12 min-h-12 resize-y': isSet,
     }"
   >
     <template v-if="isSet">
@@ -21,6 +21,8 @@
       </div>
 
       <UserScriptHighlight :model-value="item.draft" />
+
+      <div class="sticky -bottom-4 h-4 w-[200%] bg-[inherit]" />
     </template>
 
     <div
