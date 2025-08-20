@@ -21,6 +21,12 @@ const manifest: chrome.runtime.ManifestV3 = {
   icons: {
     128: 'logo128.png',
   },
+  web_accessible_resources: [
+    {
+      resources: ['RobotoMono-VariableFont_wght.ttf'],
+      matches: ['<all_urls>'],
+    },
+  ],
 }
 
 export default manifest
