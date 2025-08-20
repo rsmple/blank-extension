@@ -33,7 +33,7 @@ export default defineConfig(({mode}) => ({
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
         assetFileNames: (assetInfo) => {
-          if (assetInfo.names.includes('popup.css')) return 'popup.css'
+          if (assetInfo.names.some(item => item.includes('.css'))) return 'popup.css'
           return '[name][extname]'
         },
         manualChunks: () => 'popup',
