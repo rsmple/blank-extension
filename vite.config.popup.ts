@@ -26,14 +26,17 @@ export default defineConfig(({mode}) => ({
     outDir: resolve(__dirname, 'dist/popup'),
     emptyOutDir: true,
     target: ['esnext'],
+    cssCodeSplit: false,
     rollupOptions: {
       input: resolve(__dirname, 'src/entry/popup/popup.ts'),
       output: {
         entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
         assetFileNames: (assetInfo) => {
           if (assetInfo.names.includes('popup.css')) return 'popup.css'
           return '[name][extname]'
         },
+        manualChunks: () => 'popup',
       },
     },
   },
