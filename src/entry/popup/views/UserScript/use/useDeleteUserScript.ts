@@ -21,7 +21,7 @@ export const useDeleteUserScript = (id: MaybeRef<number>, success?: () => void) 
       title: 'Delete Script',
       description: `Are you sure you want to delete script ${ idValue }?`,
       acceptText: 'Delete',
-      acceptSemanticType: SemanticType.NEGARIVE,
+      acceptSemanticType: SemanticType.NEGATIVE,
       onAccept: () => {
         return apiUserScript
           .delete()

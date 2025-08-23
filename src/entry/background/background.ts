@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {userScriptStorage} from '@/storage/UserScript'
 
 const registeredScriptIds = new Set<string>()

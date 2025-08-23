@@ -45,7 +45,7 @@ const openModalDelete = () => {
         title: 'Delete Scripts',
         description: `Are you sure want to delete ${ numberFormatter.format(count) } script${ count === 1 ? '' : 's' }?`,
         acceptText: 'Delete',
-        acceptSemanticType: SemanticType.NEGARIVE,
+        acceptSemanticType: SemanticType.NEGATIVE,
         onAccept: async () => {
           return apiUserScript.bulkDelete(props.queryParamsGetter())
             .then(() => {

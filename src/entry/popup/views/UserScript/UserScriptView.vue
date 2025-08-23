@@ -102,7 +102,7 @@
     <div class="pb-20" />
 
     <WButton
-      :semantic-type="SemanticType.NEGARIVE"
+      :semantic-type="SemanticType.NEGATIVE"
       @click="deleteUserScript.deleteItem"
     >
       Delete Script
